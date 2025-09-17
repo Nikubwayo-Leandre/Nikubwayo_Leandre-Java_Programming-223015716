@@ -1,0 +1,68 @@
+package Student_grade;
+import java.util.Scanner;
+
+public class StudentGradingSystem {
+
+	/**
+	 * @param args
+	 */
+	    public static void main(String[] args) {
+	        Scanner sc = new Scanner(System.in);
+
+	        int totalStudents = 0;
+	        int passCount = 0;
+	        int failCount = 0;
+
+	        while (true) {
+	            System.out.print("Enter student's mark from 0 to 100:  ");
+	            int mark = sc.nextInt();
+
+	            if (mark == -1) {
+	                break;
+	            }
+
+	            if (mark < 0 || mark > 100) {
+	                System.out.println("Invalid mark. Please enter a value between 0 and 100.");
+	                continue;
+	            }
+
+	            totalStudents++;
+
+	            // Grade assignment
+	            if (mark >= 80) {
+	                System.out.println("Grade: A");
+	            } else if (mark >= 70) {
+	                System.out.println("Grade: B");
+	            } else if (mark >= 60) {
+	                System.out.println("Grade: C");
+	            } else if (mark >= 50) {
+	                System.out.println("Grade: D");
+	            } else {
+	                System.out.println("Grade: F");
+	            }
+
+	            // Count pass/fail
+	            if (mark >= 50) {
+	                passCount++;
+	            } else {
+	                failCount++;
+	            }
+	        }
+
+	        // Calculate pass rate
+	        double passRate = 0;
+	        if (totalStudents > 0) {
+	            passRate = ((double) passCount / totalStudents) * 100;
+	        }
+	        double roundedPassRate = Math.round(passRate * 100.0) / 100.0;
+
+	        // Summary report
+	        System.out.println("\n----- Summary Report -----");
+	        System.out.println("Total Students: " + totalStudents);
+	        System.out.println("Passed: " + passCount);
+	        System.out.println("Failed: " + failCount);
+	        System.out.println("Class Pass Rate: " + roundedPassRate + " percent");
+
+	        sc.close();
+	    }
+	}
